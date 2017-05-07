@@ -1,4 +1,5 @@
-﻿using System;
+﻿using serialportgui;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,7 @@ namespace serialcom
         string RxString;
         string[] ports;
         string msg;
+        int BAUDRATE = 115200;
 
 
 
@@ -40,7 +42,7 @@ namespace serialcom
                 LOGWINDOW.AppendText(msg + "\n", System.Drawing.Color.Red);
                 //LOGWINDOW.ForeColor = System.Drawing.Color.Red;
             }
-            serialPort1.BaudRate = 9600;
+            serialPort1.BaudRate = BAUDRATE;
             try
             {
                 serialPort1.Open();
@@ -49,7 +51,6 @@ namespace serialcom
             {
                 msg = "Error opening port: " + ex.Message;
                 LOGWINDOW.AppendText(msg + "\n", System.Drawing.Color.Red);
-                //LOGWINDOW.ForeColor = System.Drawing.Color.Red;
             }
 
             if (!serialPort1.IsOpen)
@@ -60,14 +61,10 @@ namespace serialcom
             {
                 msg = "Connected to " + serialPort1.PortName;
                 LOGWINDOW.AppendText(msg + "\n", System.Drawing.Color.Black);
-                //LOGWINDOW.ForeColor = System.Drawing.Color.Black;
 
                 isConnected = true;
                 toggleButtons();
             }
-            //CONNECT.Enabled = false;
-
-            
 
             //MessageBox.Show("Connected", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -81,7 +78,6 @@ namespace serialcom
 
             msg = "Disconnected from " + serialPort1.PortName;
             LOGWINDOW.AppendText(msg + "\n", System.Drawing.Color.Red);
-            //LOGWINDOW.ForeColor = System.Drawing.Color.Red;
 
             isConnected = false;
             toggleButtons();
@@ -100,25 +96,35 @@ namespace serialcom
         {
             if (serialPort1.IsOpen) serialPort1.Close();
         }
+
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-           RxString = serialPort1.ReadExisting();
-           this.Invoke(new EventHandler(DisplayText));
-           
+            RxString = serialPort1.ReadExisting();
+            this.Invoke(new EventHandler(DisplayText));
+            /*
+            int[] array = new int[serialPort1.BytesToRead];
+            int i = 0;
+            while (serialPort1.BytesToRead > 0)
+            {
+                array[i] = serialPort1.ReadByte();
+                i++;
+            }*/
         }
         private void DisplayText(object sender, EventArgs e)
         {
-            RXWINDOW.AppendText(RxString);
+            RXWINDOW.AppendText(RxString + "\n");
 
         }
 
         private void REFRESH_Click(object sender, EventArgs e)
         {
+            CB_PORTS.SelectedIndex = -1;
             searchPorts();
         }
 
         private void searchPorts()
         {
+            CB_PORTS.Items.Clear();
             ports = SerialPort.GetPortNames();
             foreach(string port in ports)
             {
@@ -132,6 +138,7 @@ namespace serialcom
             {
                 CB_PORTS.Enabled = true;
                 REFRESH.Enabled = true;
+                SETTTINGS.Enabled = true;
                 if (CB_PORTS.SelectedIndex < 0)
                 {
                     CONNECT.Enabled = false;
@@ -148,6 +155,7 @@ namespace serialcom
                 REFRESH.Enabled = false;
                 CONNECT.Enabled = false;
                 DISCONNECT.Enabled = true;
+                SETTTINGS.Enabled = false;
             }
         }
 
@@ -165,8 +173,50 @@ namespace serialcom
         {
             toggleButtons();
         }
+
+        /*private void clearTable()
+        {
+            table.SuspendLayout();
+
+            while (table.RowCount > 1)
+            {
+                int row = table.RowCount - 1;
+                for (int i = 0; i < table.ColumnCount; i++)
+                {
+                    Control c = table.GetControlFromPosition(i, row);
+                    table.Controls.Remove(c);
+                    c.Dispose();
+                }
+
+                table.RowStyles.RemoveAt(row);
+                table.RowCount--;
+            }
+
+            table.ResumeLayout(false);
+            table.PerformLayout();
+        }*/
+
+        private string stringToHex(string s)
+        {
+            byte[] ba = Encoding.Default.GetBytes(s);
+            var hexString = BitConverter.ToString(ba);
+            hexString = hexString.Replace("-", "");
+            return hexString;
+        }
+
+        private void SETTTINGS_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the SettingsForm class
+            SettingsForm settingsForm = new SettingsForm();
+
+            // Show the settings form
+            settingsForm.Show();
+        }
     }
+
+
 }
+
 
 public static class RichTextBoxExtensions
 {
