@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace serialcom
+namespace serialport
 {
     partial class Form1
     {
@@ -32,26 +32,128 @@ namespace serialcom
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.rightArrow = new System.Windows.Forms.PictureBox();
+            this.leftArrow = new System.Windows.Forms.PictureBox();
+            this.RXDETAILED = new System.Windows.Forms.RichTextBox();
+            this.TABLEPANEL = new System.Windows.Forms.Panel();
+            this.LOGWINDOW = new System.Windows.Forms.RichTextBox();
+            this.RXWINDOW = new System.Windows.Forms.RichTextBox();
+            this.textPanel = new System.Windows.Forms.Panel();
+            this.CB_PORTS = new System.Windows.Forms.ComboBox();
             this.CONNECT = new System.Windows.Forms.Button();
             this.DISCONNECT = new System.Windows.Forms.Button();
             this.REFRESH = new System.Windows.Forms.Button();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.CB_PORTS = new System.Windows.Forms.ComboBox();
-            this.rightArrow = new System.Windows.Forms.PictureBox();
-            this.leftArrow = new System.Windows.Forms.PictureBox();
-            this.LOGWINDOW = new System.Windows.Forms.RichTextBox();
-            this.RXWINDOW = new System.Windows.Forms.RichTextBox();
-            this.TABLEPANEL = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textPanel = new System.Windows.Forms.Panel();
-            this.buttonsPanel = new System.Windows.Forms.Panel();
             this.SETTTINGS = new System.Windows.Forms.Button();
+            this.buttonsPanel = new System.Windows.Forms.Panel();
+            this.DATASETTINGS = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.rightArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftArrow)).BeginInit();
             this.TABLEPANEL.SuspendLayout();
             this.textPanel.SuspendLayout();
             this.buttonsPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
+            // rightArrow
+            // 
+            this.rightArrow.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.rightArrow.Image = ((System.Drawing.Image)(resources.GetObject("rightArrow.Image")));
+            this.rightArrow.Location = new System.Drawing.Point(1812, 584);
+            this.rightArrow.Name = "rightArrow";
+            this.rightArrow.Size = new System.Drawing.Size(58, 72);
+            this.rightArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.rightArrow.TabIndex = 11;
+            this.rightArrow.TabStop = false;
+            this.rightArrow.Click += new System.EventHandler(this.rightArrow_Click);
+            // 
+            // leftArrow
+            // 
+            this.leftArrow.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.leftArrow.Image = ((System.Drawing.Image)(resources.GetObject("leftArrow.Image")));
+            this.leftArrow.InitialImage = null;
+            this.leftArrow.Location = new System.Drawing.Point(12, 584);
+            this.leftArrow.Name = "leftArrow";
+            this.leftArrow.Size = new System.Drawing.Size(58, 72);
+            this.leftArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.leftArrow.TabIndex = 12;
+            this.leftArrow.TabStop = false;
+            this.leftArrow.Click += new System.EventHandler(this.leftArrow_Click);
+            // 
+            // RXDETAILED
+            // 
+            this.RXDETAILED.BackColor = System.Drawing.SystemColors.Window;
+            this.RXDETAILED.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RXDETAILED.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RXDETAILED.Location = new System.Drawing.Point(0, 0);
+            this.RXDETAILED.Name = "RXDETAILED";
+            this.RXDETAILED.ReadOnly = true;
+            this.RXDETAILED.Size = new System.Drawing.Size(1733, 737);
+            this.RXDETAILED.TabIndex = 0;
+            this.RXDETAILED.Text = "";
+            // 
+            // TABLEPANEL
+            // 
+            this.TABLEPANEL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TABLEPANEL.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TABLEPANEL.Controls.Add(this.RXDETAILED);
+            this.TABLEPANEL.Location = new System.Drawing.Point(76, 251);
+            this.TABLEPANEL.Name = "TABLEPANEL";
+            this.TABLEPANEL.Size = new System.Drawing.Size(1733, 737);
+            this.TABLEPANEL.TabIndex = 15;
+            // 
+            // LOGWINDOW
+            // 
+            this.LOGWINDOW.BackColor = System.Drawing.SystemColors.Control;
+            this.LOGWINDOW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LOGWINDOW.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LOGWINDOW.Enabled = false;
+            this.LOGWINDOW.Location = new System.Drawing.Point(0, 0);
+            this.LOGWINDOW.Name = "LOGWINDOW";
+            this.LOGWINDOW.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.LOGWINDOW.Size = new System.Drawing.Size(610, 225);
+            this.LOGWINDOW.TabIndex = 13;
+            this.LOGWINDOW.Text = "";
+            // 
+            // RXWINDOW
+            // 
+            this.RXWINDOW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RXWINDOW.BackColor = System.Drawing.SystemColors.Window;
+            this.RXWINDOW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RXWINDOW.Location = new System.Drawing.Point(616, 0);
+            this.RXWINDOW.Name = "RXWINDOW";
+            this.RXWINDOW.ReadOnly = true;
+            this.RXWINDOW.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.RXWINDOW.Size = new System.Drawing.Size(894, 225);
+            this.RXWINDOW.TabIndex = 14;
+            this.RXWINDOW.Text = "";
+            // 
+            // textPanel
+            // 
+            this.textPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.textPanel.Controls.Add(this.RXWINDOW);
+            this.textPanel.Controls.Add(this.LOGWINDOW);
+            this.textPanel.Location = new System.Drawing.Point(360, 12);
+            this.textPanel.Name = "textPanel";
+            this.textPanel.Size = new System.Drawing.Size(1510, 225);
+            this.textPanel.TabIndex = 16;
+            // 
+            // CB_PORTS
+            // 
+            this.CB_PORTS.FormattingEnabled = true;
+            this.CB_PORTS.Location = new System.Drawing.Point(3, 3);
+            this.CB_PORTS.Name = "CB_PORTS";
+            this.CB_PORTS.Size = new System.Drawing.Size(150, 33);
+            this.CB_PORTS.TabIndex = 7;
+            this.CB_PORTS.SelectedIndexChanged += new System.EventHandler(this.CB_PORTS_SelectedIndexChanged);
             // 
             // CONNECT
             // 
@@ -88,106 +190,24 @@ namespace serialcom
             this.REFRESH.UseVisualStyleBackColor = true;
             this.REFRESH.Click += new System.EventHandler(this.REFRESH_Click);
             // 
-            // serialPort1
+            // SETTTINGS
             // 
-            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-            // 
-            // CB_PORTS
-            // 
-            this.CB_PORTS.FormattingEnabled = true;
-            this.CB_PORTS.Location = new System.Drawing.Point(3, 3);
-            this.CB_PORTS.Name = "CB_PORTS";
-            this.CB_PORTS.Size = new System.Drawing.Size(150, 33);
-            this.CB_PORTS.TabIndex = 7;
-            this.CB_PORTS.SelectedIndexChanged += new System.EventHandler(this.CB_PORTS_SelectedIndexChanged);
-            // 
-            // rightArrow
-            // 
-            this.rightArrow.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.rightArrow.Image = ((System.Drawing.Image)(resources.GetObject("rightArrow.Image")));
-            this.rightArrow.Location = new System.Drawing.Point(1812, 584);
-            this.rightArrow.Name = "rightArrow";
-            this.rightArrow.Size = new System.Drawing.Size(58, 72);
-            this.rightArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.rightArrow.TabIndex = 11;
-            this.rightArrow.TabStop = false;
-            this.rightArrow.Click += new System.EventHandler(this.rightArrow_Click);
-            // 
-            // leftArrow
-            // 
-            this.leftArrow.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.leftArrow.Image = ((System.Drawing.Image)(resources.GetObject("leftArrow.Image")));
-            this.leftArrow.InitialImage = null;
-            this.leftArrow.Location = new System.Drawing.Point(12, 584);
-            this.leftArrow.Name = "leftArrow";
-            this.leftArrow.Size = new System.Drawing.Size(58, 72);
-            this.leftArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.leftArrow.TabIndex = 12;
-            this.leftArrow.TabStop = false;
-            this.leftArrow.Click += new System.EventHandler(this.leftArrow_Click);
-            // 
-            // LOGWINDOW
-            // 
-            this.LOGWINDOW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LOGWINDOW.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LOGWINDOW.Enabled = false;
-            this.LOGWINDOW.Location = new System.Drawing.Point(0, 0);
-            this.LOGWINDOW.Name = "LOGWINDOW";
-            this.LOGWINDOW.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.LOGWINDOW.Size = new System.Drawing.Size(610, 225);
-            this.LOGWINDOW.TabIndex = 13;
-            this.LOGWINDOW.Text = "";
-            // 
-            // RXWINDOW
-            // 
-            this.RXWINDOW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SETTTINGS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RXWINDOW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RXWINDOW.Enabled = false;
-            this.RXWINDOW.Location = new System.Drawing.Point(616, 0);
-            this.RXWINDOW.Name = "RXWINDOW";
-            this.RXWINDOW.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.RXWINDOW.Size = new System.Drawing.Size(894, 225);
-            this.RXWINDOW.TabIndex = 14;
-            this.RXWINDOW.Text = "";
-            // 
-            // TABLEPANEL
-            // 
-            this.TABLEPANEL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TABLEPANEL.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TABLEPANEL.Controls.Add(this.richTextBox1);
-            this.TABLEPANEL.Location = new System.Drawing.Point(76, 251);
-            this.TABLEPANEL.Name = "TABLEPANEL";
-            this.TABLEPANEL.Size = new System.Drawing.Size(1733, 737);
-            this.TABLEPANEL.TabIndex = 15;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1733, 737);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
-            // textPanel
-            // 
-            this.textPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.textPanel.Controls.Add(this.RXWINDOW);
-            this.textPanel.Controls.Add(this.LOGWINDOW);
-            this.textPanel.Location = new System.Drawing.Point(360, 12);
-            this.textPanel.Name = "textPanel";
-            this.textPanel.Size = new System.Drawing.Size(1510, 225);
-            this.textPanel.TabIndex = 16;
+            this.SETTTINGS.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SETTTINGS.Location = new System.Drawing.Point(6, 115);
+            this.SETTTINGS.Name = "SETTTINGS";
+            this.SETTTINGS.Size = new System.Drawing.Size(330, 47);
+            this.SETTTINGS.TabIndex = 8;
+            this.SETTTINGS.Text = "CONNECTION SETTINGS";
+            this.SETTTINGS.UseVisualStyleBackColor = true;
+            this.SETTTINGS.Click += new System.EventHandler(this.SETTTINGS_Click);
             // 
             // buttonsPanel
             // 
             this.buttonsPanel.AutoScroll = true;
             this.buttonsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonsPanel.Controls.Add(this.DATASETTINGS);
             this.buttonsPanel.Controls.Add(this.SETTTINGS);
             this.buttonsPanel.Controls.Add(this.REFRESH);
             this.buttonsPanel.Controls.Add(this.DISCONNECT);
@@ -198,18 +218,17 @@ namespace serialcom
             this.buttonsPanel.Size = new System.Drawing.Size(342, 225);
             this.buttonsPanel.TabIndex = 17;
             // 
-            // SETTTINGS
+            // DATASETTINGS
             // 
-            this.SETTTINGS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DATASETTINGS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SETTTINGS.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SETTTINGS.Location = new System.Drawing.Point(6, 115);
-            this.SETTTINGS.Name = "SETTTINGS";
-            this.SETTTINGS.Size = new System.Drawing.Size(330, 52);
-            this.SETTTINGS.TabIndex = 8;
-            this.SETTTINGS.Text = "CONNECTION SETTINGS";
-            this.SETTTINGS.UseVisualStyleBackColor = true;
-            this.SETTTINGS.Click += new System.EventHandler(this.SETTTINGS_Click);
+            this.DATASETTINGS.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DATASETTINGS.Location = new System.Drawing.Point(6, 168);
+            this.DATASETTINGS.Name = "DATASETTINGS";
+            this.DATASETTINGS.Size = new System.Drawing.Size(330, 47);
+            this.DATASETTINGS.TabIndex = 9;
+            this.DATASETTINGS.Text = "DATA SETTINGS";
+            this.DATASETTINGS.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -234,21 +253,21 @@ namespace serialcom
         }
 
         #endregion
-
-        private System.Windows.Forms.Button CONNECT;
-        private System.Windows.Forms.Button DISCONNECT;
-        private System.Windows.Forms.Button REFRESH;
-        private System.Windows.Forms.ComboBox CB_PORTS;
         private System.Windows.Forms.PictureBox rightArrow;
         private System.Windows.Forms.PictureBox leftArrow;
-        private System.Windows.Forms.RichTextBox LOGWINDOW;
-        private System.Windows.Forms.RichTextBox RXWINDOW;
-        private Panel TABLEPANEL;
-        private RichTextBox richTextBox1;
-        private Panel textPanel;
-        private Panel buttonsPanel;
-        private Button SETTTINGS;
         public System.IO.Ports.SerialPort serialPort1;
+        private RichTextBox RXDETAILED;
+        private Panel TABLEPANEL;
+        private RichTextBox LOGWINDOW;
+        private RichTextBox RXWINDOW;
+        private Panel textPanel;
+        private ComboBox CB_PORTS;
+        private Button CONNECT;
+        private Button DISCONNECT;
+        private Button REFRESH;
+        private Button SETTTINGS;
+        private Panel buttonsPanel;
+        private Button DATASETTINGS;
     }
 }
 

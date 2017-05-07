@@ -33,10 +33,10 @@ namespace serialportgui
 
         public void print()
         {
-            Console.WriteLine(this.toString());
+            Console.WriteLine(this.ToString());
         }
 
-        public String toString()
+        public override string ToString()
         {
             return this.type + "\t" +
                     this.size + "\t" +

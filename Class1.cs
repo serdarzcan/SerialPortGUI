@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace serialportgui
 {
-    class SavedSettings
+    public class SavedSettings
     {
         public int baudRate;
         public int dataBits;
@@ -20,5 +20,21 @@ namespace serialportgui
         public int receivedBytesThr;
         public int rtsEnable;
         public int stopBits;
+
+        public SavedSettings()
+        {
+            baudRate = 9600;
+            dataBits = 8;
+            discardNull = 1;
+            dtrEnable = 1;
+            handshake = 0;
+            parity = 0;
+            parityReplace = 63;
+            readBufferSize = 4096;
+            readTimeout = -1;
+            receivedBytesThr = 1;
+            rtsEnable = 1;
+            stopBits = 1;
+        }
     }
 }
