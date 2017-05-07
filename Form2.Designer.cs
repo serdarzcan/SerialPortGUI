@@ -45,16 +45,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxReadBufferSize = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxreadTimeout = new System.Windows.Forms.TextBox();
+            this.textBoxReadTimeout = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxReceivedByteThr = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.CB_STOPBITS = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.CB_RTSENABLE = new System.Windows.Forms.ComboBox();
             this.SETDEFAULTS = new System.Windows.Forms.Button();
             this.CANCEL = new System.Windows.Forms.Button();
             this.OK = new System.Windows.Forms.Button();
+            this.CB_STOPBITS = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // labelBaud
@@ -133,7 +133,6 @@
             this.CB_PARITY.Name = "CB_PARITY";
             this.CB_PARITY.Size = new System.Drawing.Size(288, 33);
             this.CB_PARITY.TabIndex = 7;
-            this.CB_PARITY.SelectedIndexChanged += new System.EventHandler(this.CB_PARITY_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -216,12 +215,12 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "ReadTimeout";
             // 
-            // textBoxreadTimeout
+            // textBoxReadTimeout
             // 
-            this.textBoxreadTimeout.Location = new System.Drawing.Point(271, 369);
-            this.textBoxreadTimeout.Name = "textBoxreadTimeout";
-            this.textBoxreadTimeout.Size = new System.Drawing.Size(288, 31);
-            this.textBoxreadTimeout.TabIndex = 17;
+            this.textBoxReadTimeout.Location = new System.Drawing.Point(271, 369);
+            this.textBoxReadTimeout.Name = "textBoxReadTimeout";
+            this.textBoxReadTimeout.Size = new System.Drawing.Size(288, 31);
+            this.textBoxReadTimeout.TabIndex = 17;
             // 
             // label6
             // 
@@ -247,18 +246,6 @@
             this.label7.Size = new System.Drawing.Size(92, 25);
             this.label7.TabIndex = 20;
             this.label7.Text = "StopBits";
-            // 
-            // CB_STOPBITS
-            // 
-            this.CB_STOPBITS.FormattingEnabled = true;
-            this.CB_STOPBITS.Items.AddRange(new object[] {
-            "One",
-            "Two",
-            "OnePointFive"});
-            this.CB_STOPBITS.Location = new System.Drawing.Point(271, 504);
-            this.CB_STOPBITS.Name = "CB_STOPBITS";
-            this.CB_STOPBITS.Size = new System.Drawing.Size(288, 33);
-            this.CB_STOPBITS.TabIndex = 21;
             // 
             // label8
             // 
@@ -310,21 +297,34 @@
             this.OK.UseVisualStyleBackColor = true;
             this.OK.Click += new System.EventHandler(this.OK_Click);
             // 
+            // CB_STOPBITS
+            // 
+            this.CB_STOPBITS.FormattingEnabled = true;
+            this.CB_STOPBITS.Items.AddRange(new object[] {
+            "None",
+            "One",
+            "Two",
+            "OnePointFive"});
+            this.CB_STOPBITS.Location = new System.Drawing.Point(271, 504);
+            this.CB_STOPBITS.Name = "CB_STOPBITS";
+            this.CB_STOPBITS.Size = new System.Drawing.Size(288, 33);
+            this.CB_STOPBITS.TabIndex = 27;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 699);
+            this.Controls.Add(this.CB_STOPBITS);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.CANCEL);
             this.Controls.Add(this.SETDEFAULTS);
             this.Controls.Add(this.CB_RTSENABLE);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.CB_STOPBITS);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxReceivedByteThr);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBoxreadTimeout);
+            this.Controls.Add(this.textBoxReadTimeout);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxReadBufferSize);
             this.Controls.Add(this.label4);
@@ -367,15 +367,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxReadBufferSize;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxreadTimeout;
+        private System.Windows.Forms.TextBox textBoxReadTimeout;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxReceivedByteThr;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox CB_STOPBITS;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox CB_RTSENABLE;
         private System.Windows.Forms.Button SETDEFAULTS;
         private System.Windows.Forms.Button CANCEL;
         private System.Windows.Forms.Button OK;
+        private System.Windows.Forms.ComboBox CB_STOPBITS;
     }
 }

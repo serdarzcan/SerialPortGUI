@@ -207,10 +207,10 @@ namespace serialcom
         private void SETTTINGS_Click(object sender, EventArgs e)
         {
             // Create a new instance of the SettingsForm class
-            SettingsForm settingsForm = new SettingsForm();
+            SettingsForm settingsForm = new SettingsForm(serialPort1);
 
             // Show the settings form
-            settingsForm.Show();
+            settingsForm.ShowDialog();
         }
     }
 

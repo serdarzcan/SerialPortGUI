@@ -238,7 +238,6 @@ namespace serialcom
         private System.Windows.Forms.Button CONNECT;
         private System.Windows.Forms.Button DISCONNECT;
         private System.Windows.Forms.Button REFRESH;
-        private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.ComboBox CB_PORTS;
         private System.Windows.Forms.PictureBox rightArrow;
         private System.Windows.Forms.PictureBox leftArrow;
@@ -249,6 +248,7 @@ namespace serialcom
         private Panel textPanel;
         private Panel buttonsPanel;
         private Button SETTTINGS;
+        public System.IO.Ports.SerialPort serialPort1;
     }
 }
 
